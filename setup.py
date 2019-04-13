@@ -22,7 +22,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='django_context_decorator',
-    version='1.0.0.post1',
+    version='1.1.0',
     author='Tobias Kunze',
     author_email='r@rixx.de',
     license='Apache License 2.0',
@@ -35,7 +35,7 @@ setup(
         'License :: OSI Approved',
         'License :: OSI Approved :: Apache Software License',
     ],
-    description='Conference organisation: CfPs, scheduling, much more',
+    description='A context decorator for Django views',
     long_description=long_description,
     python_requires='>=3.6',
     keywords='django context templates',
