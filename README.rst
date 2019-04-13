@@ -1,6 +1,18 @@
 django-context-decorator
 ------------------------
 
+.. image:: https://img.shields.io/travis/rixx/django-context-decorator.svg
+   :target: https://travis-ci.org/rixx/django-context-decorator
+   :alt: Continuous integration
+
+.. image:: https://img.shields.io/codecov/c/github/rixx/django-context-decorator.svg
+   :target: https://codecov.io/gh/rixx/django-context-decorator
+   :alt: Coverage
+
+.. image:: https://img.shields.io/pypi/v/django-context-decorator.svg
+   :target: https://pypi.python.org/pypi/django-context-decorator
+   :alt: PyPI
+
 ``django-context-decorator`` is a Python package for Django removing the need
 to call ``super().get_context_data(**kwargs)`` in nearly every Django view.
 
