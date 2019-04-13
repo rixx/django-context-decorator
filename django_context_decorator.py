@@ -5,7 +5,6 @@ class context:
     the template context. Works for all Django View classes.
     Requires Python 3.6+
     """
-
     def __init__(self, func):
         self.func = func
 
@@ -17,6 +16,11 @@ class context:
         if not hasattr(owner, '_context_fields'):
             owner._context_fields = set()
         owner._context_fields.add(name)
+
+        if not getattr(owner, 'get_context_data', False):
+            def get_context_data(_self, **kwargs):
+                return super(_self, owner).get_context_data(**kwargs)
+            owner.get_context_data = get_context_data
 
         if not getattr(owner, '_context_patched', False):
             old_get_context_data = owner.get_context_data
