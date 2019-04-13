@@ -41,6 +41,4 @@ class context:
             owner._context_patched = True
 
     def __get__(self, instance, cls=None):
-        if hasattr(self.func, '__get__'):
-            return self.func.__get__(instance, cls)
-        return self.func
+        return self.func.__get__(instance, cls) if hasattr(self.func, '__get__') else self.func
