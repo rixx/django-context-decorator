@@ -11,7 +11,7 @@ if CURRENT_PYTHON < REQUIRED_PYTHON:
 ==========================
 Unsupported Python version
 ==========================
-This version of pretix requires Python {}.{}, but you're trying to
+django-context-decorator requires Python {}.{}, but you're trying to
 install it on Python {}.{}.
 """.format(
             *(REQUIRED_PYTHON + CURRENT_PYTHON)
@@ -26,7 +26,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='django_context_decorator',
-    version='1.1.0',
+    version='1.2.0',
     author='Tobias Kunze',
     author_email='r@rixx.de',
     license='Apache License 2.0',
@@ -43,6 +43,6 @@ setup(
     long_description=long_description,
     python_requires='>=3.6',
     keywords='django context templates',
-    packages=find_packages(include=['django_context_decorator']),
+    py_modules=['django_context_decorator'],
     url='https://github.com/rixx/django_context_decorator',
 )
