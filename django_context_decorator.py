@@ -21,7 +21,7 @@ class context:
         if not getattr(owner, 'get_context_data', False):
 
             def get_context_data(_self, **kwargs):
-                return super(_self, owner).get_context_data(**kwargs)
+                return super(owner, _self).get_context_data(**kwargs)
 
             owner.get_context_data = get_context_data
 
