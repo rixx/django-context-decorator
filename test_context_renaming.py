@@ -1,3 +1,5 @@
+from contextlib import suppress
+
 from django.conf import settings
 from django.test import RequestFactory
 from django.views.generic import TemplateView
@@ -6,10 +8,8 @@ import django_context_decorator
 
 context = django_context_decorator.context
 
-try:
+with suppress(RuntimeError):
     settings.configure()
-except RuntimeError:
-    pass
 
 
 class View(TemplateView):
