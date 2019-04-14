@@ -53,3 +53,13 @@ Limitations
 ===========
 
 Due to the usage of ``__set_name__``, this package is limited to usage with Python 3.6+.
+
+Development
+===========
+
+All code resides in ``django_context_decorator.py``. Tests are collected by
+``pytest`` from all files starting with ``test_``. To run tests, start a
+virtual environment, install the dependencies, and run ``pytest``::
+
+    pip install django pytest pytest-cov
+    py.test --cov-report term --cov=django_context_decorator
