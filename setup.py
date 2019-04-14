@@ -44,5 +44,5 @@ setup(
     python_requires='>=3.6',
     keywords='django context templates',
     py_modules=['django_context_decorator'],
-    url='https://github.com/rixx/django_context_decorator',
+    url='https://github.com/rixx/django-context-decorator',
 )
