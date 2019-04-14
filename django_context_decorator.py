@@ -1,3 +1,6 @@
+import copy
+
+
 class context:
     """
     Use this class as a decorator around methods, properties, or cached
@@ -16,6 +19,9 @@ class context:
 
         if not hasattr(owner, '_context_fields'):
             owner._context_fields = set()
+        elif not getattr(owner, '_context_copied_' + owner.__name__, False):
+            setattr(owner, '_context_copied_' + owner.__name__, True)
+            owner._context_fields = copy.deepcopy(owner._context_fields)
         owner._context_fields.add(name)
 
         if not getattr(owner, 'get_context_data', False):

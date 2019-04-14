@@ -49,6 +49,18 @@ class View(ViewMixin, TemplateView):
         return 'data cached property'
 
 
+class OtherView(ViewMixin, TemplateView):
+    template_name = '.html'
+
+    def __init__(self, request, **kwargs):
+        self.request = request
+        super().__init__(**kwargs)
+
+    @context
+    def other_data(self):
+        return 'data'
+
+
 DATA = {
     'data': 'data',
     'property_data': 'data property',
@@ -74,3 +86,12 @@ def test_context_decorator_context_content(key, value):
     view = View(RequestFactory().get(''))
     for _ in range(2):
         assert view.get_context_data()[key] == value
+
+
+def test_view_inheritance():
+    view = OtherView(RequestFactory().get(''))
+    context = view.get_context_data()
+    assert 'other_data' in context
+    assert 'data' not in context
+    assert 'property_data' not in context
+    assert 'cached_property_data' not in context
