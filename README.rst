@@ -16,6 +16,8 @@ django-context-decorator
 ``django-context-decorator`` is a Python package for Django removing the need
 to call ``super().get_context_data(**kwargs)`` in nearly every Django view.
 
+You can also read the `blog post`_ about this package.
+
 Usage
 =====
 
@@ -63,3 +65,5 @@ virtual environment, install the dependencies, and run ``pytest``::
 
     pip install django pytest pytest-cov
     py.test --cov-report term --cov=django_context_decorator
+
+.. _blog post: https://rixx.de/blog/a-context-decorator-for-django/
