@@ -64,6 +64,6 @@ All code resides in ``django_context_decorator.py``. Tests are collected by
 virtual environment, install the dependencies, and run ``pytest``::
 
     pip install django pytest pytest-cov
-    py.test --cov-report term --cov=django_context_decorator
+    pytest --cov-report term --cov=django_context_decorator
 
 .. _blog post: https://rixx.de/blog/a-context-decorator-for-django/
