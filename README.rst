@@ -51,6 +51,68 @@ Please note: While this package works with the ``@cached_property`` decorator,
 please make sure to add the ``@context`` decorator **above** the
 ``@cached_property`` decorator.
 
+Another example to illustrate the benefits of the use of the decorator.
+
+Instead of the code:
+
+.. code-block:: python
+
+    from django.views.generic import TemplateView
+
+    
+    class BaseMixin(TemplateView):
+
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx['var_from_base_mixin'] = 'var_from_base_mixin'
+            return ctx
+
+
+    class View1(BaseMixin):
+
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx['var_from_view_1'] = 'value_from_view_1'
+            return ctx
+
+
+    class View2(View1):
+
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx['var_from_view_2'] = 'value_from_view_2'
+            return ctx
+
+you could implement it as:
+
+.. code-block:: python
+
+    from django.views.generic import TemplateView
+    from django_context_decorator import context
+
+
+    class BaseMixin(TemplateView):
+
+        @context
+        def var_from_base_mixin(self):
+            return 'var_from_base_mixin'
+
+
+    class View1(BaseMixin):
+
+        @context
+        def var_from_view_1(self):
+            return 'value_from_view_1'
+
+
+    class View2(View1):
+
+        @context
+        def var_from_view_2(self):
+            return 'value_from_view_2'
+
+
+
 Limitations
 ===========
 
