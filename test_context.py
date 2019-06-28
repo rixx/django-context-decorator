@@ -1,3 +1,5 @@
+from itertools import repeat
+
 import pytest
 from django.conf import settings
 from django.test import RequestFactory
@@ -73,7 +75,7 @@ DATA = {
 @pytest.mark.parametrize('key,value',((key, value) for key, value in DATA.items()))
 def test_context_decorator_view_attributes(key, value):
     view = View(RequestFactory().get(''))
-    for _ in range(2):
+    for _ in repeat(None, 2):
         attr = getattr(view, key)
         if callable(attr):
             assert attr() == value
@@ -84,7 +86,7 @@ def test_context_decorator_view_attributes(key, value):
 @pytest.mark.parametrize('key,value',((key, value) for key, value in DATA.items()))
 def test_context_decorator_context_content(key, value):
     view = View(RequestFactory().get(''))
-    for _ in range(2):
+    for _ in repeat(None, 2):
         assert view.get_context_data()[key] == value
 
 
