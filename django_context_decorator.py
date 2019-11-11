@@ -1,6 +1,3 @@
-import copy
-
-
 class context:
     """
     Use this class as a decorator around methods, properties, or cached
@@ -12,16 +9,23 @@ class context:
     def __init__(self, func):
         self.func = func
 
+    @staticmethod
+    def _initialize_context_fields(cls):
+        if getattr(cls, '_context_fields_owner', '') is cls:
+            return
+
+        cls._context_fields_owner = cls
+        cls._context_fields = set()
+
+        for parent in cls.mro()[1:]:
+            cls._context_fields.update(getattr(parent, '_context_fields', set()))
+
     def __set_name__(self, owner, name):
 
         if hasattr(self.func, '__set_name__'):
             self.func.__set_name__(owner, name)
 
-        if not hasattr(owner, '_context_fields'):
-            owner._context_fields = set()
-        elif getattr(owner, '_context_fields_owner', '') is not owner:
-            owner._context_fields = copy.deepcopy(owner._context_fields)
-        setattr(owner, '_context_fields_owner', owner)
+        self._initialize_context_fields(owner)
         owner._context_fields.add(name)
 
         if not getattr(owner, 'get_context_data', False):
@@ -35,6 +39,7 @@ class context:
             old_get_context_data = owner.get_context_data
 
             def new_get_context_data(_self, **kwargs):
+                self._initialize_context_fields(type(_self))
                 result = old_get_context_data(_self, **kwargs)
                 for name in _self._context_fields:
                     attr = getattr(_self, name)
