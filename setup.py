@@ -26,7 +26,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='django_context_decorator',
-    version='1.5.0',
+    version='1.6.0',
     author='Tobias Kunze',
     author_email='r@rixx.de',
     license='Apache License 2.0',
