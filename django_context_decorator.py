@@ -19,9 +19,9 @@ class context:
 
         if not hasattr(owner, '_context_fields'):
             owner._context_fields = set()
-        elif getattr(owner, '_context_copied', '') is not owner:
-            setattr(owner, '_context_copied', owner)
+        elif getattr(owner, '_context_fields_owner', '') is not owner:
             owner._context_fields = copy.deepcopy(owner._context_fields)
+        setattr(owner, '_context_fields_owner', owner)
         owner._context_fields.add(name)
 
         if not getattr(owner, 'get_context_data', False):
