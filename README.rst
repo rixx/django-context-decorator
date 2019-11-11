@@ -51,16 +51,16 @@ Please note: While this package works with the ``@cached_property`` decorator,
 please make sure to add the ``@context`` decorator **above** the
 ``@cached_property`` decorator.
 
-Another example to illustrate the benefits of the use of the decorator.
-
-Instead of the code:
+This is especially useful when you couple it with inheritance, because it
+allows you to re-use parent class variables without having to extract them from
+your ``context``. So you could write a long-form like this:
 
 .. code-block:: python
 
     from django.views.generic import TemplateView
 
     
-    class BaseMixin(TemplateView):
+    class BaseMixin:
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
@@ -68,7 +68,7 @@ Instead of the code:
             return ctx
 
 
-    class View1(BaseMixin):
+    class View1(BaseMixin, TemplateView):
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
@@ -83,7 +83,7 @@ Instead of the code:
             ctx['var_from_view_2'] = 'value_from_view_2'
             return ctx
 
-you could implement it as:
+instead like this:
 
 .. code-block:: python
 
@@ -91,14 +91,14 @@ you could implement it as:
     from django_context_decorator import context
 
 
-    class BaseMixin(TemplateView):
+    class BaseMixin:
 
         @context
         def var_from_base_mixin(self):
             return 'var_from_base_mixin'
 
 
-    class View1(BaseMixin):
+    class View1(BaseMixin, TemplateView):
 
         @context
         def var_from_view_1(self):
@@ -116,7 +116,7 @@ you could implement it as:
 Limitations
 ===========
 
-Due to the usage of ``__set_name__``, this package is limited to usage with Python 3.6+.
+Due to the usage of ``__set_name__``, this package is limited to Python 3.6+.
 
 Development
 ===========
