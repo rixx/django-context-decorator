@@ -112,12 +112,6 @@ instead like this:
             return 'value_from_view_2'
 
 
-
-Limitations
-===========
-
-Due to the usage of ``__set_name__``, this package is limited to Python 3.6+.
-
 Development
 ===========
 
