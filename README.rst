@@ -18,6 +18,12 @@ to call ``super().get_context_data(**kwargs)`` in nearly every Django view.
 
 You can also read the `blog post`_ about this package.
 
+***Note:*** If this package is looking unmaintained due to no recent commits, that’s
+because it’s a tiny package that is feature complete and stable. I see no need to
+release a new version just to add explicit compatibility with new Django versions,
+but for as long as Django provides class-based views with a ``get_context_data``
+method, this package will work with them.
+
 Usage
 =====
 
