@@ -21,28 +21,28 @@ install it on Python {}.{}.
 
 # Get the long description from the relevant file
 here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(path.join(here, "README.rst"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name='django_context_decorator',
-    version='1.6.0',
-    author='Tobias Kunze',
-    author_email='r@rixx.de',
-    license='Apache License 2.0',
+    name="django_context_decorator",
+    version="1.6.0",
+    author="Tobias Kunze",
+    author_email="r@rixx.de",
+    license="Apache License 2.0",
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers',
-        'Framework :: Django',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'License :: OSI Approved',
-        'License :: OSI Approved :: Apache Software License',
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "Framework :: Django",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "License :: OSI Approved",
+        "License :: OSI Approved :: Apache Software License",
     ],
-    description='A context decorator for Django views',
+    description="A context decorator for Django views",
     long_description=long_description,
-    python_requires='>=3.6',
-    keywords='django context templates',
-    py_modules=['django_context_decorator'],
-    url='https://github.com/rixx/django-context-decorator',
+    python_requires=">=3.6",
+    keywords="django context templates",
+    py_modules=["django_context_decorator"],
+    url="https://github.com/rixx/django-context-decorator",
 )

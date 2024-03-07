@@ -16,21 +16,21 @@ class ViewMixin:
 
     @context
     def mixin(self):
-        return 'mixin'
+        return "mixin"
 
     @context
     @property
     def property_mixin(self):
-        return 'mixin property'
+        return "mixin property"
 
     @context
     @cached_property
     def cached_property_mixin(self):
-        return 'mixin cached property'
+        return "mixin cached property"
 
 
 class View(ViewMixin, TemplateView):
-    template_name = '.html'
+    template_name = ".html"
 
     def __init__(self, request, **kwargs):
         self.request = request
@@ -38,21 +38,21 @@ class View(ViewMixin, TemplateView):
 
     @context
     def data(self):
-        return 'data'
+        return "data"
 
     @context
     @property
     def property_data(self):
-        return 'data property'
+        return "data property"
 
     @context
     @cached_property
     def cached_property_data(self):
-        return 'data cached property'
+        return "data cached property"
 
 
 class OtherView(ViewMixin, TemplateView):
-    template_name = '.html'
+    template_name = ".html"
 
     def __init__(self, request, **kwargs):
         self.request = request
@@ -60,21 +60,22 @@ class OtherView(ViewMixin, TemplateView):
 
     @context
     def other_data(self):
-        return 'data'
+        return "data"
 
 
 DATA = {
-    'data': 'data',
-    'property_data': 'data property',
-    'cached_property_data': 'data cached property',
-    'mixin': 'mixin',
-    'property_mixin': 'mixin property',
-    'cached_property_mixin': 'mixin cached property',
+    "data": "data",
+    "property_data": "data property",
+    "cached_property_data": "data cached property",
+    "mixin": "mixin",
+    "property_mixin": "mixin property",
+    "cached_property_mixin": "mixin cached property",
 }
 
-@pytest.mark.parametrize('key,value',((key, value) for key, value in DATA.items()))
+
+@pytest.mark.parametrize("key,value", ((key, value) for key, value in DATA.items()))
 def test_context_decorator_view_attributes(key, value):
-    view = View(RequestFactory().get(''))
+    view = View(RequestFactory().get(""))
     for _ in repeat(None, 2):
         attr = getattr(view, key)
         if callable(attr):
@@ -83,17 +84,17 @@ def test_context_decorator_view_attributes(key, value):
             assert attr == value
 
 
-@pytest.mark.parametrize('key,value',((key, value) for key, value in DATA.items()))
+@pytest.mark.parametrize("key,value", ((key, value) for key, value in DATA.items()))
 def test_context_decorator_context_content(key, value):
-    view = View(RequestFactory().get(''))
+    view = View(RequestFactory().get(""))
     for _ in repeat(None, 2):
         assert view.get_context_data()[key] == value
 
 
 def test_view_inheritance():
-    view = OtherView(RequestFactory().get(''))
+    view = OtherView(RequestFactory().get(""))
     context = view.get_context_data()
-    assert 'other_data' in context
-    assert 'data' not in context
-    assert 'property_data' not in context
-    assert 'cached_property_data' not in context
+    assert "other_data" in context
+    assert "data" not in context
+    assert "property_data" not in context
+    assert "cached_property_data" not in context
