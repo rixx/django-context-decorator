@@ -1,6 +1,6 @@
 [project]
 name = "django_context_decorator"
-version = "1.6.0"
+version = "1.6.1"
 description = "A context decorator for Django views"
 readme = "README.rst"
 requires-python = ">=3.6"
